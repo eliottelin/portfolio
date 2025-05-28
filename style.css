@@ -572,11 +572,14 @@ html.theme-light-blue {
     max-width: 48px !important;
   }
   .sidebar-icon {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     padding: 0.25rem 0 !important;
   }
   .sidebar-label {
     display: none !important;
+  }
+  .main-content {
+    padding-left: 48px !important;
   }
 }
 
