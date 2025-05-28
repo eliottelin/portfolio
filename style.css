@@ -1,46 +1,203 @@
 /* ===== GLOBAL STYLES & FONT IMPORTS ===== */
 
-/* In style.css */
-:root { /* Or e.g., html.theme-dark-teal, or body.theme-dark-teal */
+/* style.css */
+:root {
     /* Base Dark Theme Colors */
-    --base-bg: #0d1117; /* Very dark, almost black */
-    --base-bg-lighter: #161b22; /* Slightly lighter dark */
-    --base-bg-tertiary: #010409; /* For elements like filter bar */
+    --base-bg: #0d1117;                 /* Used for terminal-window, project-card, get-in-touch */
+    --base-bg-lighter: #161b22;         /* Used for terminal-header, featured-projects-section, input-bg */
+    --base-bg-section: #10121A;         /* Used for profile-overview, all-projects, resume-section */
+    --base-bg-tertiary: #010409;        /* Could be used for elements like filter bar */
 
-    --text-primary: #e6edf3;   /* Main light text */
-    --text-secondary: #abb2bf; /* Softer/muted text */
-    --text-muted-more: #8b949e; /* More muted */
+    --text-primary: #e6edf3;            /* Main light text (headings, card titles) */
+    --text-secondary: #abb2bf;          /* Softer/muted text (paragraphs, card text) */
+    --text-muted-more: #8b949e;         /* More muted (dates, small meta text) */
+    --text-inverted: #0b0c10;           /* Text for on top of accent backgrounds (e.g., on teal buttons) */
 
-    --border-color: #30363d;
-    --border-color-light: #4A5568;
+    --border-color: #30363d;            /* Standard borders */
+    --border-color-light: #4A5568;      /* Lighter borders (e.g., filter bar buttons) */
 
     /* Component Specific Backgrounds (Dark) */
     --sidebar-bg: #0b0c10;
-    --terminal-bg: #0d1117; /* Could be same as base or slightly different */
-    --terminal-header-bg: #161b22;
-    --card-bg: #0d1117; /* For project cards */
+    --sidebar-icon-bg: #1f2833;
+    --sidebar-icon-hover-bg: #66fcf1; /* This is an accent application */
+    --sidebar-icon-text: #c5c6c7;
+    --sidebar-icon-hover-text: var(--text-inverted);
+
+    --hero-bg-fallback: #161b22;        /* Fallback for hero if Spline doesn't load */
+    --resume-callout-bg: rgba(44, 47, 54, 0.8); /* bg-light-transparent */
+    --resume-callout-border: rgba(102, 252, 241, 0.3); /* Accent transparent border */
+
     --button-bg: #313a49;
+    --button-text: #c5c6c7;
     --button-hover-bg: #404a58;
-    --input-bg: #161b22;
+    --button-hover-text: var(--text-primary);
+    --button-border: #404a58;
+
+    --input-placeholder-text: #8b949e;
 
     /* Accent Colors (Teal is default here) */
-    --accent-color: #66fcf1;         /* Teal */
-    --accent-color-darker: #50d9c9;
-    --accent-text-on-dark: #0b0c10;  /* For text on teal buttons */
-    --accent-bg-hover-transparent: rgba(102, 252, 241, 0.1);
-    --accent-border-hover-transparent: rgba(102, 252, 241, 0.3);
+    --accent-color: #66fcf1;                 /* Teal */
+    --accent-color-darker: #50d9c9;          /* Slightly darker teal for hover */
+    --accent-bg-transparent-low: rgba(102, 252, 241, 0.1);  /* For tech tag bg */
+    --accent-bg-transparent-med: rgba(102, 252, 241, 0.15); /* For website button bg */
+    --accent-bg-transparent-hover: rgba(102, 252, 241, 0.3);
+    --accent-border-transparent: rgba(102, 252, 241, 0.3);
+    --accent-border-transparent-hover: rgba(102, 252, 241, 0.5);
+    --accent-text-on-accent-bg: var(--text-inverted); /* Text on solid accent color backgrounds */
 
     /* Specific Accent Applications */
-    --link-color: var(--accent-color);
+    --link-color: var(--accent-color); /* For general links if any */
     --button-primary-bg: var(--accent-color);
-    --button-primary-text: var(--accent-text-on-dark);
+    --button-primary-text: var(--accent-text-on-accent-bg);
     --button-primary-hover-bg: var(--accent-color-darker);
+    --button-outline-accent-text: var(--accent-color);
+    --button-outline-accent-border: var(--accent-color);
+    --button-outline-accent-hover-bg: var(--accent-bg-transparent-low);
+    --button-outline-accent-hover-text: var(--accent-color);
+
+    --typing-cursor-color: var(--accent-color); /* For the typewriter cursor */
 }
+
+/* ===== THEME DEFINITIONS ===== */
+
+/* --- DARK THEMES (Different Accents) --- */
+/* Base dark variables are mostly inherited from :root unless overridden */
+
+html.theme-dark-lavender {
+    --accent-color: #b19cd9;         /* Lavender */
+    --accent-color-darker: #9370db;
+    --accent-text-on-accent-bg: #ffffff; /* Text on lavender buttons might need to be white */
+    --accent-bg-transparent-low: rgba(177, 156, 217, 0.1);
+    --accent-bg-transparent-med: rgba(177, 156, 217, 0.15);
+    --accent-bg-transparent-hover: rgba(177, 156, 217, 0.3);
+    --accent-border-transparent: rgba(177, 156, 217, 0.3);
+    --accent-border-transparent-hover: rgba(177, 156, 217, 0.5);
+    --sidebar-icon-hover-bg: var(--accent-color); /* Ensure components use the new accent */
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
+}
+
+html.theme-dark-maroon {
+    --accent-color: #c7365d;         /* Maroon-like */
+    --accent-color-darker: #a52a2a;
+    --accent-text-on-accent-bg: #ffffff;
+    --accent-bg-transparent-low: rgba(199, 54, 93, 0.1);
+    --accent-bg-transparent-med: rgba(199, 54, 93, 0.15);
+    --accent-bg-transparent-hover: rgba(199, 54, 93, 0.3);
+    --accent-border-transparent: rgba(199, 54, 93, 0.3);
+    --accent-border-transparent-hover: rgba(199, 54, 93, 0.5);
+    --sidebar-icon-hover-bg: var(--accent-color);
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
+}
+
+html.theme-dark-blue {
+    --accent-color: #56ccf2;         /* A nice blue */
+    --accent-color-darker: #2f80ed;
+    --accent-text-on-accent-bg: #0d1117; /* Dark text on this blue */
+    --accent-bg-transparent-low: rgba(86, 204, 242, 0.1);
+    --accent-bg-transparent-med: rgba(86, 204, 242, 0.15);
+    --accent-bg-transparent-hover: rgba(86, 204, 242, 0.3);
+    --accent-border-transparent: rgba(86, 204, 242, 0.3);
+    --accent-border-transparent-hover: rgba(86, 204, 242, 0.5);
+    --sidebar-icon-hover-bg: var(--accent-color);
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
+}
+
+/* --- LIGHT THEMES --- */
+/* For light themes, you need to redefine base colors as well as accent */
+html.theme-light-base { /* A generic light theme base, accents will be applied on top */
+    --base-bg: #f0f2f5;
+    --base-bg-lighter: #ffffff;
+    --base-bg-section: #ffffff;
+    --base-bg-tertiary: #e9ecef;
+
+    --text-primary: #212529;   /* Dark text for light backgrounds */
+    --text-secondary: #495057;
+    --text-muted-more: #6c757d;
+    --text-inverted: #ffffff;   /* Text for on top of accent backgrounds (if accent is dark) */
+
+    --border-color: #dee2e6;
+    --border-color-light: #ced4da;
+
+    --sidebar-bg: #e9ecef;
+    --sidebar-icon-bg: #dadfe4;
+    /* --sidebar-icon-hover-bg will be set by accent part */
+    --sidebar-icon-text: #343a40;
+    /* --sidebar-icon-hover-text will be set by accent part */
+
+    --terminal-bg: #f8f9fa;
+    --terminal-header-bg: #e9ecef;
+    --card-bg: #ffffff;
+    --button-bg: #ced4da;
+    --button-text: #212529;
+    --button-hover-bg: #adb5bd;
+    --button-hover-text: #000000;
+    --input-bg: #ffffff;
+    --input-placeholder-text: #6c757d;
+
+    --resume-callout-bg: rgba(220, 223, 228, 0.8); /* Lighter transparent */
+}
+
+html.theme-light-teal {
+    /* Inherit from theme-light-base and override/add accent specific vars */
+    /* You might need to copy all vars from theme-light-base if inheritance isn't direct via JS logic */
+    /* For simplicity, let's assume JS applies two classes like "theme-light theme-accent-teal" */
+    /* OR, define full themes like this: */
+    --base-bg: #f0f2f5; --base-bg-lighter: #ffffff; --base-bg-section: #ffffff; --base-bg-tertiary: #e9ecef;
+    --text-primary: #212529; --text-secondary: #495057; --text-muted-more: #6c757d; --text-inverted: #ffffff;
+    --border-color: #dee2e6; --border-color-light: #ced4da;
+    --sidebar-bg: #e9ecef; --sidebar-icon-bg: #dadfe4; --sidebar-icon-text: #343a40;
+    --terminal-bg: #f8f9fa; --terminal-header-bg: #e9ecef; --card-bg: #ffffff;
+    --button-bg: #ced4da; --button-text: #212529; --button-hover-bg: #adb5bd; --button-hover-text: #000000;
+    --input-bg: #ffffff; --input-placeholder-text: #6c757d;
+    --resume-callout-bg: rgba(220, 223, 228, 0.8);
+
+    --accent-color: #17a2b8; /* Teal for light themes */
+    --accent-color-darker: #138496;
+    --accent-text-on-accent-bg: #ffffff;
+    --accent-bg-transparent-low: rgba(23, 162, 184, 0.1);
+    --accent-bg-transparent-med: rgba(23, 162, 184, 0.15);
+    --accent-bg-transparent-hover: rgba(23, 162, 184, 0.2);
+    --accent-border-transparent: rgba(23, 162, 184, 0.2);
+    --accent-border-transparent-hover: rgba(23, 162, 184, 0.4);
+    --sidebar-icon-hover-bg: var(--accent-color);
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
+}
+
+html.theme-light-lavender {
+    /* Copy all base light vars */
+    --base-bg: #f0f2f5; --base-bg-lighter: #ffffff; --base-bg-section: #ffffff; --base-bg-tertiary: #e9ecef;
+    --text-primary: #212529; --text-secondary: #495057; --text-muted-more: #6c757d; --text-inverted: #ffffff;
+    --border-color: #dee2e6; --border-color-light: #ced4da;
+    --sidebar-bg: #e9ecef; --sidebar-icon-bg: #dadfe4; --sidebar-icon-text: #343a40;
+    --terminal-bg: #f8f9fa; --terminal-header-bg: #e9ecef; --card-bg: #ffffff;
+    --button-bg: #ced4da; --button-text: #212529; --button-hover-bg: #adb5bd; --button-hover-text: #000000;
+    --input-bg: #ffffff; --input-placeholder-text: #6c757d;
+    --resume-callout-bg: rgba(220, 223, 228, 0.8);
+
+    /* Lavender accent for light themes */
+    --accent-color: #8A2BE2; /* BlueViolet */
+    --accent-color-darker: #7B68EE; /* MediumSlateBlue */
+    --accent-text-on-accent-bg: #ffffff;
+    --accent-bg-transparent-low: rgba(138, 43, 226, 0.07);
+    --accent-bg-transparent-med: rgba(138, 43, 226, 0.12);
+    --accent-bg-transparent-hover: rgba(138, 43, 226, 0.2);
+    --accent-border-transparent: rgba(138, 43, 226, 0.2);
+    --accent-border-transparent-hover: rgba(138, 43, 226, 0.4);
+    --sidebar-icon-hover-bg: var(--accent-color);
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
+}
+
+/* Add .theme-light-maroon, .theme-light-blue similarly, defining all base and accent vars */
 
 body {
     font-family: 'Inter', sans-serif; /* Default font */
-    background-color: #1a1a1d; /* Dark background similar to screenshots */
-    color: #f0f0f0; /* Light text color */
+    background-color: var(--base-bg-section); /* Dark background similar to screenshots */
+    color: var(--text-primary); /* Light text color */
     margin: 0; /* Remove default browser margin */
     overflow: hidden; /* Prevents scrollbars on the body itself, main content will scroll */
 }
@@ -51,18 +208,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== PROFILE OVERVIEW SECTION STYLING ===== */
 .profile-overview-section {
-    background-color: #10121A; /* Slightly different dark shade for variety */
-    /* Match this to your overall theme, could be same as hero's fallback or body */
+    background-color: var(--base-bg-section); /* Slightly different dark shade for variety */
     color: #c5c6c7; /* Default text color for this section */
 }
 
 .terminal-window {
-    background-color: #0d1117; /* Dark terminal background */
-    border: 1px solid #30363d; /* Subtle border */
+    background-color: var(--base-bg); /* Dark terminal background */
+    border: 1px solid var(--border-color); /* Subtle border */
     border-radius: 8px; /* Rounded corners for the window */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     max-width: 80vw; /* Max width of the terminal window */
-    /* font-family: 'Courier New', Courier, monospace; /* Classic monospace font */
     font-family: 'Space Mono', 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, Courier, monospace; /* Better monospace options */
 }
 
@@ -70,7 +225,7 @@ h1, h2, h3, h4, h5, h6 {
     content: '_'; /* Or '|' or '▋' */
     animation: blink 1s step-end infinite;
     margin-left: 2px; /* Adjust as needed */
-    color: var(--accent-color, #66fcf1); /* Use your accent color CSS variable if you have one */
+    color: var(--accent-color); /* Use your accent color CSS variable if you have one */
 }
 
 @keyframes blink {
@@ -79,14 +234,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .terminal-header {
-    background-color: #161b22; /* Slightly lighter header background */
+    background-color: var(--base-bg-lighter); /* Slightly lighter header background */
     padding: 8px 12px;
     border-top-left-radius: 7px; /* Match parent's border-radius */
     border-top-right-radius: 7px;
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* In style.css */
 .terminal-header {
     position: relative; /* Needed for absolute positioning of message area if desired */
 }
@@ -100,7 +254,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 100%; /* Position below the header */
     left: 10px; /* Adjust as needed */
     background-color: #2c333c; /* Darker than buttons, lighter than terminal */
-    color: #e6edf3;
+    color: var(--text-primary);
     padding: 8px 12px;
     border-radius: 4px;
     font-size: 1rem;
@@ -131,7 +285,7 @@ h1, h2, h3, h4, h5, h6 {
 .term-btn.maximize { background-color: #28c940; }
 
 .terminal-title {
-    color: #c9d1d9;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -142,7 +296,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .terminal-text {
-    color: #abb2bf; /* Softer text color */
+    color: var(--text-secondary); /* Softer text color */
     margin-bottom: 0.5em;
 }
 
@@ -151,15 +305,14 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.5em;
 }
 
-.prompt-user { color: #66fcf1; /* Your accent color for user */ font-weight: bold; }
-.prompt-path { color: #abb2bf; }
-.prompt-dollar { color: #abb2bf; margin-right: 5px;}
-.prompt-command { color: #e6edf3; /* Whiter for the command itself */ }
-
+.prompt-user { color: var(--accent-color); font-weight: bold; }
+.prompt-path { color: var(--text-secondary); }
+.prompt-dollar { color: var(--text-secondary); margin-right: 5px;}
+.prompt-command { color: var(--text-primary); }
 
 /* Tab-like buttons */
 .profile-tabs {
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 1.5rem;
 }
 .profile-tab-btn {
@@ -175,18 +328,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .profile-tab-btn:hover {
-    color: #c9d1d9;
+    color: var(--text-primary);
 }
 
 .profile-tab-btn.active {
-    color: #66fcf1; /* Accent color for active tab */
+    color: var(--accent-color); /* Accent color for active tab */
     font-weight: bold;
-    border-bottom-color: #66fcf1; /* Active indicator line */
+    border-bottom-color: var(--accent-color); /* Active indicator line */
 }
-
-/* Content Panes */
-/* ===== PROFILE OVERVIEW SECTION STYLING ===== */
-/* ... (other styles for terminal, tabs, etc.) ... */
 
 /* Content Panes */
 .content-pane {
@@ -198,14 +347,13 @@ h1, h2, h3, h4, h5, h6 {
     display: block; /* Show only the active one */
 }
 
-/* Optional: Keyframes for fade-in animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .content-item h5.content-title {
-    color: #e6edf3; /* Brighter color for titles */
+    color: var(--text-primary); /* Brighter color for titles */
     font-size: 1.05rem;
     font-weight: 500; /* Using Space Grotesk, so 500 is good */
 }
@@ -219,19 +367,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-item .content-subtitle {
-    color: #abb2bf;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-top: 0.25rem;
 }
 
 /* ===== FEATURED PROJECTS SECTION STYLING ===== */
 .featured-projects-section {
-    background-color: #161b22; /* Or your preferred dark background for the section */
-    /* If you want this section to be lighter overall, adjust here */
+    background-color: var(--base-bg-lighter); /* Or your preferred dark background for the section */
 }
 
 .featured-projects-section .section-header h2 {
-    color: #e6edf3; /* Light color for the section title */
+    color: var(--text-primary); /* Light color for the section title */
 }
 
 .featured-projects-section .section-header .small {
@@ -239,15 +386,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-card {
-    background-color: #0d1117; /* Dark background for cards, similar to terminal */
-    /* If you want light cards on a dark background: */
-    /* background-color: #1f2833; */
-    /* Or even lighter: */
-    /* background-color: #2c333c; */
-    border: 1px solid #30363d; /* Subtle border for cards */
+    background-color: var(--base-bg); /* Dark background for cards, similar to terminal */
+    border: 1px solid var(--border-color); /* Subtle border for cards */
     border-radius: 8px; /* Rounded corners for cards */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Ensuring h-100 works as expected with d-flex in card-body */
     display: flex;
     flex-direction: column;
 }
@@ -263,14 +405,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-card .card-title {
-    color: #e6edf3; /* Brighter color for project titles */
+    color: var(--text-primary); /* Brighter color for project titles */
     margin-bottom: 0.5rem;
 }
 
 .project-tech-tag {
     display: inline-block; /* Allow padding and background */
-    background-color: rgba(102, 252, 241, 0.1); /* Accent color with low opacity */
-    color: #66fcf1; /* Accent color */
+    background-color: var(--accent-bg-transparent-low); /* Accent color with low opacity */
+    color: var(--accent-color); /* Accent color */
     font-size: 0.75rem;
     font-weight: 500;
     padding: 0.25em 0.6em;
@@ -279,7 +421,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-card .card-text {
-    color: #abb2bf; /* Softer color for description */
+    color: var(--text-secondary); /* Softer color for description */
     font-size: 0.875rem; /* Standard small text size */
     line-height: 1.5;
 }
@@ -288,43 +430,39 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
 }
 .project-stats span:first-child {
-    color: #e6edf3; /* Brighter color for star count, for example */
+    color: var(--text-primary); /* Brighter color for star count, for example */
 }
 
-
 .project-links .project-btn {
-    background-color: #313a49; /* A neutral dark button background */
-    border-color: #404a58;
-    color: #c5c6c7;
+    background-color: var(--button-bg); /* A neutral dark button background */
+    border-color: var(--button-border);
+    color: var(--button-text);
     font-size: 0.8rem;
     padding: 0.3rem 0.8rem;
 }
 
 .project-links .project-btn:hover {
-    background-color: #404a58;
+    background-color: var(--button-hover-bg);
     border-color: #505a68;
-    color: #e6edf3;
+    color: var(--button-hover-text);
 }
 
 .project-links .project-btn-website {
-    background-color: rgba(102, 252, 241, 0.15); /* Accent color, slightly more opaque */
-    border-color: rgba(102, 252, 241, 0.3);
-    color: #66fcf1;
+    background-color: var(--accent-bg-transparent-med); /* Accent color, slightly more opaque */
+    border-color: var(--accent-border-transparent);
+    color: var(--accent-color);
 }
 
 .project-links .project-btn-website:hover {
-    background-color: rgba(102, 252, 241, 0.3);
-    border-color: rgba(102, 252, 241, 0.5);
+    background-color: var(--accent-bg-transparent-hover);
+    border-color: var(--accent-border-transparent-hover);
     color: #ffffff;
 }
-
-/* For icons in buttons (if you add them later) */
-/* .project-btn svg { margin-right: 5px; } */
 
 /* ===== SIDEBAR STYLING ===== */
 .sidebar {
     width: 80px; /* Fixed width for the sidebar */
-    background-color: #0b0c10 !important; /* Darker sidebar, !important to override Bootstrap's bg-dark if needed */
+    background-color: var(--sidebar-bg) !important; /* Darker sidebar, !important to override Bootstrap's bg-dark if needed */
     border-right: 1px solid #2c2f36;
     position: fixed; /* Fixed position */
     left: 0;
@@ -334,29 +472,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar-icon {
-    /* Basic styling for icon placeholders */
     width: 40px;
     height: 40px;
-    background-color: #1f2833; /* Icon background */
+    background-color: var(--sidebar-icon-bg); /* Icon background */
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    color: #c5c6c7; /* Icon color */
+    color: var(--sidebar-icon-text); /* Icon color */
 }
 
 .sidebar-icon:hover {
-    background-color: #66fcf1; /* Accent color on hover */
-    color: #0b0c10;
+    background-color: var(--sidebar-icon-hover-bg); /* Accent color on hover */
+    color: var(--sidebar-icon-hover-text);
 }
 
 /* ===== MAIN CONTENT STYLING ===== */
 .main-content {
     padding-left: 80px; /* Offset by sidebar width */
     height: 100vh; /* Full viewport height */
-    /* overflow-auto is set in HTML, which is good */
 }
 
 /* ===== HERO SECTION STYLING ===== */
@@ -364,9 +500,7 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 100vh;
     position: relative;
     padding: 40px 0 40px 40px; /* Top, right, bottom, left */
-    background-color: #161b22; /* Fallback if Spline doesn't load, or use a gradient */
-    /* You could add a subtle gradient background here too */
-    /* background-image: linear-gradient(to bottom, #161b22, #0d1117); */
+    background-color: var(--hero-bg-fallback); /* Fallback if Spline doesn't load, or use a gradient */
 }
 
 .spline-background {
@@ -388,31 +522,29 @@ h1, h2, h3, h4, h5, h6 {
     align-items: flex-start;
     text-align: left;
     margin-bottom: 40px;
-    /* Text color will be inherited from body or you can set it specifically */
-    /* e.g., color: #ffffff; */
     max-width: 700px; /* Limit width of text for readability */
 }
 
 .hero-text-content h1 {
-    color: #e6edf3; /* Light color for heading */
+    color: var(--text-primary); /* Light color for heading */
 }
 
 .hero-text-content p {
-    color: #bdc1c6; /* Slightly dimmer color for paragraph */
+    color: var(--text-secondary); /* Slightly dimmer color for paragraph */
     font-size: 1.1rem;
 }
 
 .hero-text-content .btn-outline-light {
-    border-color: #66fcf1; /* Accent color for button border */
-    color: #66fcf1; /* Accent color for button text */
+    border-color: var(--button-outline-accent-border); /* Accent color for button border */
+    color: var(--button-outline-accent-text); /* Accent color for button text */
     padding: 10px 25px;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .hero-text-content .btn-outline-light:hover {
-    background-color: #66fcf1;
-    color: #0b0c10;
+    background-color: var(--button-outline-accent-hover-bg);
+    color: var(--button-outline-accent-hover-text);
 }
 
 .hero-text-content .arrow {
@@ -424,30 +556,29 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(5px);
 }
 
-
 /* RESUME CALLOUT STYLING */
 .resume-callout .card {
-    border: 1px solid rgba(102, 252, 241, 0.3); /* Accent border, semi-transparent */
+    border: 1px solid var(--resume-callout-border); /* Accent border, semi-transparent */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 .bg-light-transparent {
-    background-color: rgba(44, 47, 54, 0.8) !important; /* Semi-transparent dark background, use !important if Bootstrap overrides */
+    background-color: var(--resume-callout-bg) !important; /* Semi-transparent dark background, use !important if Bootstrap overrides */
     backdrop-filter: blur(5px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(5px); /* For Safari */
 }
 
 .resume-callout .card-title {
-    color: #66fcf1; /* Accent color for title */
+    color: var(--accent-color); /* Accent color for title */
     font-size: 0.9rem;
     font-weight: bold;
 }
 
 .resume-callout .card-text {
-    color: #c5c6c7;
+    color: var(--button-text);
     font-size: 0.8rem;
 }
 
-.resume-callout .stretched-link:after { /* Style for the clickable overlay if needed */
+.resume-callout .stretched-link:after {
     content: "";
     position: absolute;
     top: 0;
@@ -458,22 +589,18 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: auto;
 }
 
-/* Placeholder for the vertical timeline later */
-/* You might add this inside .main-content, positioned to the left */
-
 /* ===== GET IN TOUCH SECTION STYLING ===== */
 .get-in-touch-section {
-    background-color: #0d1117; /* Very dark background, adjust as needed */
-    /* Or match your overall page background if different */
-    border-top: 1px solid #30363d; /* Separator line */
+    background-color: var(--base-bg); /* Very dark background, adjust as needed */
+    border-top: 1px solid var(--border-color); /* Separator line */
 }
 
 .get-in-touch-section h2 {
-    color: #e6edf3;
+    color: var(--text-primary);
 }
 
 .get-in-touch-section .lead {
-    color: #abb2bf;
+    color: var(--text-secondary);
 }
 
 .contact-links-grid {
@@ -486,120 +613,95 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-link-btn {
-    display: inline-block; /* Changed from inline-flex for simpler text centering */
-    background-color: #161b22; /* Dark button background */
-    color: #c5c6c7; /* Light text */
+    display: inline-block;
+    background-color: var(--base-bg-lighter); /* Dark button background */
+    color: var(--button-text); /* Light text */
     padding: 0.75rem 1rem;
     border-radius: 6px;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
-    border: 1px solid #30363d;
+    border: 1px solid var(--border-color);
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
 }
 
 .contact-link-btn:hover {
-    background-color: #1f2833;
-    border-color: #66fcf1; /* Accent color border on hover */
-    color: #66fcf1;       /* Accent color text on hover */
+    background-color: var(--sidebar-icon-bg);
+    border-color: var(--accent-color); /* Accent color border on hover */
+    color: var(--accent-color);       /* Accent color text on hover */
     transform: translateY(-2px); /* Slight lift */
 }
 
-/* Style for the icon if you add it later, e.g., using Font Awesome or SVGs */
-/* .contact-link-btn svg { margin-right: 8px; } */
-
 .open-source-statement .accent-text {
-    color: #66fcf1; /* Your theme's accent color */
+    color: var(--accent-color); /* Your theme's accent color */
 }
 
 .open-source-statement .text-muted {
-    color: #8b949e !important;
+    color: var(--text-muted-more) !important;
     line-height: 1.7;
 }
 
 /* ===== ALL PROJECTS PAGE STYLING ===== */
 .all-projects-section {
-    background-color: #10121A; /* Or your preferred background for this page */
+    background-color: var(--base-bg-section); /* Or your preferred background for this page */
     min-height: 100vh; /* Ensure it takes at least full screen height */
 }
 
 .projects-page-header {
     position: relative; /* For potential background image positioning */
     padding-bottom: 2rem; /* Space below header text */
-    /* If using header-bg-image: */
-    /* padding-top: 5rem; */
-    /* padding-bottom: 5rem; */
-    /* color: #fff;  Adjust text color if on dark image */
 }
 
 .projects-page-header .page-title {
-    color: #e6edf3;
+    color: var(--text-primary);
 }
-
-/* Optional: If you add a header background image */
-/*
-.header-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3;
-    z-index: -1;
-    border-radius: 8px;
-}
-*/
 
 .filters-bar {
-    /* Using a custom dark color for this bar */
-    background-color: #0d1117; /* A very dark tertiary background */
-    border: 1px solid #30363d;
+    background-color: var(--base-bg); /* A very dark tertiary background */
+    border: 1px solid var(--border-color);
 }
 
 .filters-bar .form-control-sm {
-    background-color: #161b22;
-    border-color: #30363d;
-    color: #e6edf3;
+    background-color: var(--base-bg-lighter);
+    border-color: var(--border-color);
+    color: var(--text-primary);
     font-size: 0.875rem;
 }
 
 .filters-bar .form-control-sm::placeholder {
-    color: #8b949e;
+    color: var(--text-muted-more);
 }
 
 .filters-bar .btn-outline-secondary,
 .filters-bar .btn-secondary {
     font-size: 0.875rem;
-    border-color: #4A5568; /* Softer border color */
+    border-color: var(--border-color-light); /* Softer border color */
     color: #A0AEC0;
 }
 .filters-bar .btn-secondary {
-    background-color: #4A5568;
+    background-color: var(--border-color-light);
     color: #E2E8F0;
 }
 
 .filters-bar .btn-outline-secondary:hover,
 .filters-bar .btn-secondary:hover {
-    border-color: #66fcf1;
-    background-color: rgba(102, 252, 241, 0.1);
-    color: #66fcf1;
+    border-color: var(--accent-color);
+    background-color: var(--accent-bg-transparent-low);
+    color: var(--accent-color);
 }
 
-
 .project-list-item.card {
-    background-color: #0d1117; /* Slightly lighter than section bg, or match terminal */
-    border: 1px solid #30363d;
+    background-color: var(--base-bg); /* Slightly lighter than section bg, or match terminal */
+    border: 1px solid var(--border-color);
 }
 
 .project-list-item .card-title {
-    color: #e6edf3;
+    color: var(--text-primary);
 }
 
 .project-list-item .card-text {
-    color: #8b949e; /* Muted color for metadata */
+    color: var(--text-muted-more); /* Muted color for metadata */
 }
 
 .project-item-actions .btn-sm {
@@ -612,12 +714,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .project-item-actions .btn-outline-info:hover {
     background-color: #56ccf2;
-    color: #0d1117;
+    color: var(--base-bg);
 }
 .project-item-actions .btn-info {
     background-color: #56ccf2;
     border-color: #56ccf2;
-    color: #0d1117; /* Dark text on light blue bg */
+    color: var(--base-bg); /* Dark text on light blue bg */
 }
 .project-item-actions .btn-info:hover {
     background-color: #2f80ed; /* Darker blue on hover */
@@ -626,61 +728,61 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* ===== RESUME PAGE STYLING ===== */
 .resume-section {
-    background-color: #10121A; /* Consistent dark background */
+    background-color: var(--base-bg-section); /* Consistent dark background */
     color: #c5c6c7; /* Default light text */
     min-height: 100vh;
 }
 
 .resume-header .page-title {
-    color: #e6edf3; /* Bright title */
+    color: var(--text-primary); /* Bright title */
 }
 
 .resume-header .text-muted {
-    color: #8b949e !important; /* Ensure muted color is applied */
+    color: var(--text-muted-more) !important; /* Ensure muted color is applied */
 }
 
 .resume-actions .btn-primary {
-    background-color: #66fcf1; /* Accent color for primary button */
-    border-color: #66fcf1;
-    color: #0b0c10; /* Dark text on accent bg */
+    background-color: var(--accent-color); /* Accent color for primary button */
+    border-color: var(--accent-color);
+    color: var(--accent-text-on-accent-bg); /* Dark text on accent bg */
 }
 .resume-actions .btn-primary:hover {
-    background-color: #50d9c9; /* Slightly darker accent on hover */
-    border-color: #50d9c9;
+    background-color: var(--accent-color-darker); /* Slightly darker accent on hover */
+    border-color: var(--accent-color-darker);
 }
 
 .resume-actions .btn-outline-primary {
-    border-color: #66fcf1;
-    color: #66fcf1;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 .resume-actions .btn-outline-primary:hover {
-    background-color: rgba(102, 252, 241, 0.1);
-    color: #66fcf1;
+    background-color: var(--accent-bg-transparent-low);
+    color: var(--accent-color);
 }
 
 .resume-header .summary-text {
-    color: #abb2bf;
+    color: var(--text-secondary);
     font-size: 1rem;
     max-width: 800px; /* For readability */
 }
 
 .contact-details {
     font-size: 0.9rem;
-    color: #abb2bf;
+    color: var(--text-secondary);
 }
 .contact-details strong {
     color: #c5c6c7;
 }
 
 .resume-sub-section .sub-section-title {
-    color: #66fcf1; /* Accent color for section titles */
-    border-bottom: 1px solid #30363d;
+    color: var(--accent-color); /* Accent color for section titles */
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
 }
 
 .experience-item .item-title,
 .education-item .item-title {
-    color: #e6edf3;
+    color: var(--text-primary);
     font-size: 1.1rem;
 }
 .experience-item .company-name {
@@ -702,7 +804,7 @@ h1, h2, h3, h4, h5, h6 {
 .item-details-list {
     list-style-type: disc; /* Or 'circle' or none if you prefer */
     padding-left: 20px; /* Indent list items */
-    color: #abb2bf;
+    color: var(--text-secondary);
 }
 
 .item-details-list li {

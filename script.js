@@ -160,4 +160,58 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+        // --- Advanced Theme Toggler (NEW CODE STARTS HERE) ---
+    const themeToggleButton = document.getElementById('theme-toggle-btn');
+    const docElement = document.documentElement; // This is the <html> element
+
+    // Define your themes in an order you want them to cycle through
+    const themes = [
+        'theme-dark-teal',       // Default (matches your :root setup)
+        'theme-dark-lavender',
+        'theme-dark-maroon',
+        'theme-dark-blue',
+        'theme-light-teal',
+        'theme-light-lavender'
+        // Add 'theme-light-maroon', 'theme-light-blue' once defined in CSS
+    ];
+    let currentThemeIndex = 0; // Will be updated by loadTheme
+
+    // Function to apply a theme
+    function applyTheme(themeClassName) {
+        // Remove any existing theme classes from <html>
+        // This regex matches any class starting with "theme-"
+        const themeRegex = /\btheme-[a-z-]+\b/g;
+        docElement.className = docElement.className.replace(themeRegex, '').trim();
+
+        // Add the new theme class
+        docElement.classList.add(themeClassName);
+        localStorage.setItem('portfolioTheme', themeClassName); // Save theme
+        currentThemeIndex = themes.indexOf(themeClassName); // Update current index
+    }
+
+    // Function to load saved theme or apply default
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('portfolioTheme');
+        if (savedTheme && themes.includes(savedTheme)) {
+            applyTheme(savedTheme);
+        } else {
+            // Apply default theme (first in the array)
+            applyTheme(themes[0]);
+        }
+    }
+
+    // Event listener for the toggle button
+    if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', () => {
+            let nextThemeIndex = currentThemeIndex + 1;
+            if (nextThemeIndex >= themes.length) {
+                nextThemeIndex = 0; // Cycle back to the first theme
+            }
+            applyTheme(themes[nextThemeIndex]);
+        });
+    }
+
+    // Load the theme when the page loads
+    loadTheme();
+    // --- Advanced Theme Toggler (NEW CODE ENDS HERE) ---
 });
