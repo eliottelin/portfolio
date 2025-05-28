@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const terminalCommand = document.getElementById('terminal-command');
     const fullPromptElement = document.getElementById('terminal-line-prompt');
     const promptStructure = `
-        <span class="prompt-user">root@bsodium:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+        <span class="prompt-user">root@elin:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
         <span class="prompt-command" id="terminal-command"></span>`; // Command part will be typed
 
     // HERO TYPEWRITER
@@ -82,10 +82,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const heroTitleText = heroTitle ? heroTitle.textContent : '';
     const heroSubtitleText = heroSubtitle ? heroSubtitle.textContent : '';
 
-    const textLine1 = "Powershell 7.3.4";
+    // --- Format date for terminal line 1 ---
+    function getTerminalDateString() {
+        const now = new Date();
+        let m = now.getMonth() + 1;
+        let d = now.getDate();
+        let y = now.getFullYear() % 100;
+        return `${m}.${d}.${y}`;
+    }
+    const textLine1 = `CV ${getTerminalDateString()}`;
     const randomMs = Math.floor(Math.random() * 100) + 1;
     const textLine2 = `Loading personal and system profiles took ${randomMs}ms.`;
-    const commandText = "bsodium.exe --education";
+    const commandText = "elin.exe --education";
 
     let typingSpeed = 50; // Milliseconds per character
 
@@ -227,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     fullPromptElement.innerHTML = promptStructure;
                     const newTerminalCommandElement = fullPromptElement.querySelector('#terminal-command');
                     if (newTerminalCommandElement) {
-                        const command = targetContentId === 'experience' ? 'bsodium.exe --experience' : 'bsodium.exe --education';
+                        const command = targetContentId === 'experience' ? 'elin.exe --experience' : 'elin.exe --education';
                         typeWriter(newTerminalCommandElement, command);
                     }
                 }
