@@ -1,0 +1,711 @@
+/* ===== GLOBAL STYLES & FONT IMPORTS ===== */
+
+/* In style.css */
+:root { /* Or e.g., html.theme-dark-teal, or body.theme-dark-teal */
+    /* Base Dark Theme Colors */
+    --base-bg: #0d1117; /* Very dark, almost black */
+    --base-bg-lighter: #161b22; /* Slightly lighter dark */
+    --base-bg-tertiary: #010409; /* For elements like filter bar */
+
+    --text-primary: #e6edf3;   /* Main light text */
+    --text-secondary: #abb2bf; /* Softer/muted text */
+    --text-muted-more: #8b949e; /* More muted */
+
+    --border-color: #30363d;
+    --border-color-light: #4A5568;
+
+    /* Component Specific Backgrounds (Dark) */
+    --sidebar-bg: #0b0c10;
+    --terminal-bg: #0d1117; /* Could be same as base or slightly different */
+    --terminal-header-bg: #161b22;
+    --card-bg: #0d1117; /* For project cards */
+    --button-bg: #313a49;
+    --button-hover-bg: #404a58;
+    --input-bg: #161b22;
+
+    /* Accent Colors (Teal is default here) */
+    --accent-color: #66fcf1;         /* Teal */
+    --accent-color-darker: #50d9c9;
+    --accent-text-on-dark: #0b0c10;  /* For text on teal buttons */
+    --accent-bg-hover-transparent: rgba(102, 252, 241, 0.1);
+    --accent-border-hover-transparent: rgba(102, 252, 241, 0.3);
+
+    /* Specific Accent Applications */
+    --link-color: var(--accent-color);
+    --button-primary-bg: var(--accent-color);
+    --button-primary-text: var(--accent-text-on-dark);
+    --button-primary-hover-bg: var(--accent-color-darker);
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Default font */
+    background-color: #1a1a1d; /* Dark background similar to screenshots */
+    color: #f0f0f0; /* Light text color */
+    margin: 0; /* Remove default browser margin */
+    overflow: hidden; /* Prevents scrollbars on the body itself, main content will scroll */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif; /* Font for headings */
+}
+
+/* ===== PROFILE OVERVIEW SECTION STYLING ===== */
+.profile-overview-section {
+    background-color: #10121A; /* Slightly different dark shade for variety */
+    /* Match this to your overall theme, could be same as hero's fallback or body */
+    color: #c5c6c7; /* Default text color for this section */
+}
+
+.terminal-window {
+    background-color: #0d1117; /* Dark terminal background */
+    border: 1px solid #30363d; /* Subtle border */
+    border-radius: 8px; /* Rounded corners for the window */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 80vw; /* Max width of the terminal window */
+    /* font-family: 'Courier New', Courier, monospace; /* Classic monospace font */
+    font-family: 'Space Mono', 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, Courier, monospace; /* Better monospace options */
+}
+
+.typing-effect::after {
+    content: '_'; /* Or '|' or '▋' */
+    animation: blink 1s step-end infinite;
+    margin-left: 2px; /* Adjust as needed */
+    color: var(--accent-color, #66fcf1); /* Use your accent color CSS variable if you have one */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.terminal-header {
+    background-color: #161b22; /* Slightly lighter header background */
+    padding: 8px 12px;
+    border-top-left-radius: 7px; /* Match parent's border-radius */
+    border-top-right-radius: 7px;
+    border-bottom: 1px solid #30363d;
+}
+
+/* In style.css */
+.terminal-header {
+    position: relative; /* Needed for absolute positioning of message area if desired */
+}
+
+.term-btn:hover {
+    filter: brightness(1.2); /* Simple hover effect for buttons */
+}
+
+.terminal-message-area {
+    position: absolute;
+    top: 100%; /* Position below the header */
+    left: 10px; /* Adjust as needed */
+    background-color: #2c333c; /* Darker than buttons, lighter than terminal */
+    color: #e6edf3;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif; /* Not monospace for readability */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10; /* Ensure it's above other terminal content */
+    opacity: 0; /* Hidden by default */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    max-width: 20vw; /* Prevent it from being too wide */
+}
+
+.terminal-message-area.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.terminal-buttons .term-btn {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.term-btn.close { background-color: #ff5f57; }
+.term-btn.minimize { background-color: #ffbd2e; }
+.term-btn.maximize { background-color: #28c940; }
+
+.terminal-title {
+    color: #c9d1d9;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.terminal-body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.terminal-text {
+    color: #abb2bf; /* Softer text color */
+    margin-bottom: 0.5em;
+}
+
+.terminal-prompt {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.prompt-user { color: #66fcf1; /* Your accent color for user */ font-weight: bold; }
+.prompt-path { color: #abb2bf; }
+.prompt-dollar { color: #abb2bf; margin-right: 5px;}
+.prompt-command { color: #e6edf3; /* Whiter for the command itself */ }
+
+
+/* Tab-like buttons */
+.profile-tabs {
+    border-bottom: 1px solid #30363d;
+    margin-bottom: 1.5rem;
+}
+.profile-tab-btn {
+    background-color: transparent;
+    border: none;
+    color: #8b949e; /* Inactive tab color */
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent; /* For the active indicator */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.profile-tab-btn:hover {
+    color: #c9d1d9;
+}
+
+.profile-tab-btn.active {
+    color: #66fcf1; /* Accent color for active tab */
+    font-weight: bold;
+    border-bottom-color: #66fcf1; /* Active indicator line */
+}
+
+/* Content Panes */
+/* ===== PROFILE OVERVIEW SECTION STYLING ===== */
+/* ... (other styles for terminal, tabs, etc.) ... */
+
+/* Content Panes */
+.content-pane {
+    display: none; /* Hide all panes by default */
+    animation: fadeIn 0.5s ease-in-out; /* Optional: nice fade-in effect */
+}
+
+.content-pane.active-pane {
+    display: block; /* Show only the active one */
+}
+
+/* Optional: Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-item h5.content-title {
+    color: #e6edf3; /* Brighter color for titles */
+    font-size: 1.05rem;
+    font-weight: 500; /* Using Space Grotesk, so 500 is good */
+}
+
+.content-item .content-date {
+    color: #8b949e; /* Dimmer color for dates */
+    font-size: 0.85rem;
+    font-weight: normal; /* Inter font for date */
+    font-family: 'Inter', sans-serif;
+    margin-left: 10px;
+}
+
+.content-item .content-subtitle {
+    color: #abb2bf;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+/* ===== FEATURED PROJECTS SECTION STYLING ===== */
+.featured-projects-section {
+    background-color: #161b22; /* Or your preferred dark background for the section */
+    /* If you want this section to be lighter overall, adjust here */
+}
+
+.featured-projects-section .section-header h2 {
+    color: #e6edf3; /* Light color for the section title */
+}
+
+.featured-projects-section .section-header .small {
+    color: #8b949e; /* Dimmer color for "9 repositories" */
+}
+
+.project-card {
+    background-color: #0d1117; /* Dark background for cards, similar to terminal */
+    /* If you want light cards on a dark background: */
+    /* background-color: #1f2833; */
+    /* Or even lighter: */
+    /* background-color: #2c333c; */
+    border: 1px solid #30363d; /* Subtle border for cards */
+    border-radius: 8px; /* Rounded corners for cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Ensuring h-100 works as expected with d-flex in card-body */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.project-card .card-body {
+    padding: 1.25rem; /* Standard card padding */
+    color: #c5c6c7; /* Default text color within the card */
+}
+
+.project-card .card-title {
+    color: #e6edf3; /* Brighter color for project titles */
+    margin-bottom: 0.5rem;
+}
+
+.project-tech-tag {
+    display: inline-block; /* Allow padding and background */
+    background-color: rgba(102, 252, 241, 0.1); /* Accent color with low opacity */
+    color: #66fcf1; /* Accent color */
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25em 0.6em;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.project-card .card-text {
+    color: #abb2bf; /* Softer color for description */
+    font-size: 0.875rem; /* Standard small text size */
+    line-height: 1.5;
+}
+
+.project-stats span {
+    font-size: 0.8rem;
+}
+.project-stats span:first-child {
+    color: #e6edf3; /* Brighter color for star count, for example */
+}
+
+
+.project-links .project-btn {
+    background-color: #313a49; /* A neutral dark button background */
+    border-color: #404a58;
+    color: #c5c6c7;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+}
+
+.project-links .project-btn:hover {
+    background-color: #404a58;
+    border-color: #505a68;
+    color: #e6edf3;
+}
+
+.project-links .project-btn-website {
+    background-color: rgba(102, 252, 241, 0.15); /* Accent color, slightly more opaque */
+    border-color: rgba(102, 252, 241, 0.3);
+    color: #66fcf1;
+}
+
+.project-links .project-btn-website:hover {
+    background-color: rgba(102, 252, 241, 0.3);
+    border-color: rgba(102, 252, 241, 0.5);
+    color: #ffffff;
+}
+
+/* For icons in buttons (if you add them later) */
+/* .project-btn svg { margin-right: 5px; } */
+
+/* ===== SIDEBAR STYLING ===== */
+.sidebar {
+    width: 80px; /* Fixed width for the sidebar */
+    background-color: #0b0c10 !important; /* Darker sidebar, !important to override Bootstrap's bg-dark if needed */
+    border-right: 1px solid #2c2f36;
+    position: fixed; /* Fixed position */
+    left: 0;
+    top: 0;
+    height: 100vh; /* Full viewport height */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.sidebar-icon {
+    /* Basic styling for icon placeholders */
+    width: 40px;
+    height: 40px;
+    background-color: #1f2833; /* Icon background */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #c5c6c7; /* Icon color */
+}
+
+.sidebar-icon:hover {
+    background-color: #66fcf1; /* Accent color on hover */
+    color: #0b0c10;
+}
+
+/* ===== MAIN CONTENT STYLING ===== */
+.main-content {
+    padding-left: 80px; /* Offset by sidebar width */
+    height: 100vh; /* Full viewport height */
+    /* overflow-auto is set in HTML, which is good */
+}
+
+/* ===== HERO SECTION STYLING ===== */
+.hero-section {
+    min-height: 100vh;
+    position: relative;
+    padding: 40px 0 40px 40px; /* Top, right, bottom, left */
+    background-color: #161b22; /* Fallback if Spline doesn't load, or use a gradient */
+    /* You could add a subtle gradient background here too */
+    /* background-image: linear-gradient(to bottom, #161b22, #0d1117); */
+}
+
+.spline-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind the text content */
+}
+
+.spline-background spline-viewer {
+    width: 100%;
+    height: 100%;
+    display: block; /* Ensure it takes up space */
+}
+
+.hero-text-content {
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 40px;
+    /* Text color will be inherited from body or you can set it specifically */
+    /* e.g., color: #ffffff; */
+    max-width: 700px; /* Limit width of text for readability */
+}
+
+.hero-text-content h1 {
+    color: #e6edf3; /* Light color for heading */
+}
+
+.hero-text-content p {
+    color: #bdc1c6; /* Slightly dimmer color for paragraph */
+    font-size: 1.1rem;
+}
+
+.hero-text-content .btn-outline-light {
+    border-color: #66fcf1; /* Accent color for button border */
+    color: #66fcf1; /* Accent color for button text */
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-text-content .btn-outline-light:hover {
+    background-color: #66fcf1;
+    color: #0b0c10;
+}
+
+.hero-text-content .arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.hero-text-content .btn-outline-light:hover .arrow {
+    transform: translateX(5px);
+}
+
+
+/* RESUME CALLOUT STYLING */
+.resume-callout .card {
+    border: 1px solid rgba(102, 252, 241, 0.3); /* Accent border, semi-transparent */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.bg-light-transparent {
+    background-color: rgba(44, 47, 54, 0.8) !important; /* Semi-transparent dark background, use !important if Bootstrap overrides */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
+
+.resume-callout .card-title {
+    color: #66fcf1; /* Accent color for title */
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.resume-callout .card-text {
+    color: #c5c6c7;
+    font-size: 0.8rem;
+}
+
+.resume-callout .stretched-link:after { /* Style for the clickable overlay if needed */
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* Placeholder for the vertical timeline later */
+/* You might add this inside .main-content, positioned to the left */
+
+/* ===== GET IN TOUCH SECTION STYLING ===== */
+.get-in-touch-section {
+    background-color: #0d1117; /* Very dark background, adjust as needed */
+    /* Or match your overall page background if different */
+    border-top: 1px solid #30363d; /* Separator line */
+}
+
+.get-in-touch-section h2 {
+    color: #e6edf3;
+}
+
+.get-in-touch-section .lead {
+    color: #abb2bf;
+}
+
+.contact-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 1rem; /* Space between buttons */
+    max-width: 900px; /* Max width for the grid container */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-link-btn {
+    display: inline-block; /* Changed from inline-flex for simpler text centering */
+    background-color: #161b22; /* Dark button background */
+    color: #c5c6c7; /* Light text */
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #30363d;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-link-btn:hover {
+    background-color: #1f2833;
+    border-color: #66fcf1; /* Accent color border on hover */
+    color: #66fcf1;       /* Accent color text on hover */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+/* Style for the icon if you add it later, e.g., using Font Awesome or SVGs */
+/* .contact-link-btn svg { margin-right: 8px; } */
+
+.open-source-statement .accent-text {
+    color: #66fcf1; /* Your theme's accent color */
+}
+
+.open-source-statement .text-muted {
+    color: #8b949e !important;
+    line-height: 1.7;
+}
+
+/* ===== ALL PROJECTS PAGE STYLING ===== */
+.all-projects-section {
+    background-color: #10121A; /* Or your preferred background for this page */
+    min-height: 100vh; /* Ensure it takes at least full screen height */
+}
+
+.projects-page-header {
+    position: relative; /* For potential background image positioning */
+    padding-bottom: 2rem; /* Space below header text */
+    /* If using header-bg-image: */
+    /* padding-top: 5rem; */
+    /* padding-bottom: 5rem; */
+    /* color: #fff;  Adjust text color if on dark image */
+}
+
+.projects-page-header .page-title {
+    color: #e6edf3;
+}
+
+/* Optional: If you add a header background image */
+/*
+.header-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+    border-radius: 8px;
+}
+*/
+
+.filters-bar {
+    /* Using a custom dark color for this bar */
+    background-color: #0d1117; /* A very dark tertiary background */
+    border: 1px solid #30363d;
+}
+
+.filters-bar .form-control-sm {
+    background-color: #161b22;
+    border-color: #30363d;
+    color: #e6edf3;
+    font-size: 0.875rem;
+}
+
+.filters-bar .form-control-sm::placeholder {
+    color: #8b949e;
+}
+
+.filters-bar .btn-outline-secondary,
+.filters-bar .btn-secondary {
+    font-size: 0.875rem;
+    border-color: #4A5568; /* Softer border color */
+    color: #A0AEC0;
+}
+.filters-bar .btn-secondary {
+    background-color: #4A5568;
+    color: #E2E8F0;
+}
+
+.filters-bar .btn-outline-secondary:hover,
+.filters-bar .btn-secondary:hover {
+    border-color: #66fcf1;
+    background-color: rgba(102, 252, 241, 0.1);
+    color: #66fcf1;
+}
+
+
+.project-list-item.card {
+    background-color: #0d1117; /* Slightly lighter than section bg, or match terminal */
+    border: 1px solid #30363d;
+}
+
+.project-list-item .card-title {
+    color: #e6edf3;
+}
+
+.project-list-item .card-text {
+    color: #8b949e; /* Muted color for metadata */
+}
+
+.project-item-actions .btn-sm {
+    font-size: 0.8rem;
+}
+
+.project-item-actions .btn-outline-info {
+    color: #56ccf2; /* A nice blue for info */
+    border-color: #56ccf2;
+}
+.project-item-actions .btn-outline-info:hover {
+    background-color: #56ccf2;
+    color: #0d1117;
+}
+.project-item-actions .btn-info {
+    background-color: #56ccf2;
+    border-color: #56ccf2;
+    color: #0d1117; /* Dark text on light blue bg */
+}
+.project-item-actions .btn-info:hover {
+    background-color: #2f80ed; /* Darker blue on hover */
+    border-color: #2f80ed;
+    color: #ffffff;
+}
+/* ===== RESUME PAGE STYLING ===== */
+.resume-section {
+    background-color: #10121A; /* Consistent dark background */
+    color: #c5c6c7; /* Default light text */
+    min-height: 100vh;
+}
+
+.resume-header .page-title {
+    color: #e6edf3; /* Bright title */
+}
+
+.resume-header .text-muted {
+    color: #8b949e !important; /* Ensure muted color is applied */
+}
+
+.resume-actions .btn-primary {
+    background-color: #66fcf1; /* Accent color for primary button */
+    border-color: #66fcf1;
+    color: #0b0c10; /* Dark text on accent bg */
+}
+.resume-actions .btn-primary:hover {
+    background-color: #50d9c9; /* Slightly darker accent on hover */
+    border-color: #50d9c9;
+}
+
+.resume-actions .btn-outline-primary {
+    border-color: #66fcf1;
+    color: #66fcf1;
+}
+.resume-actions .btn-outline-primary:hover {
+    background-color: rgba(102, 252, 241, 0.1);
+    color: #66fcf1;
+}
+
+.resume-header .summary-text {
+    color: #abb2bf;
+    font-size: 1rem;
+    max-width: 800px; /* For readability */
+}
+
+.contact-details {
+    font-size: 0.9rem;
+    color: #abb2bf;
+}
+.contact-details strong {
+    color: #c5c6c7;
+}
+
+.resume-sub-section .sub-section-title {
+    color: #66fcf1; /* Accent color for section titles */
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.5rem;
+}
+
+.experience-item .item-title,
+.education-item .item-title {
+    color: #e6edf3;
+    font-size: 1.1rem;
+}
+.experience-item .company-name {
+    color: #a0aec0; /* Slightly different color for company */
+    font-weight: normal;
+}
+
+.experience-item .item-date,
+.education-item .item-date {
+    font-size: 0.9rem;
+}
+
+.experience-item .item-location,
+.education-item .item-degree {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.item-details-list {
+    list-style-type: disc; /* Or 'circle' or none if you prefer */
+    padding-left: 20px; /* Indent list items */
+    color: #abb2bf;
+}
+
+.item-details-list li {
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+}

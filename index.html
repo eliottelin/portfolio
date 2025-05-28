@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Software Developer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.37.0/build/spline-viewer.js"></script>
+    </head>
+
+<body>
+    <div class="container-fluid vh-100 d-flex p-0">
+        <aside class="sidebar bg-dark text-light p-3 d-flex flex-column align-items-center">
+            <div class="sidebar-icons mt-4">
+                <a href="index.html" class="sidebar-icon mb-4 d-flex align-items-center justify-content-center text-decoration-none" title="Home">H</a>
+                <a href="projects.html" class="sidebar-icon mb-4 d-flex align-items-center justify-content-center text-decoration-none" title="Projects">P</a>
+                <a href="resume.html" class="sidebar-icon mb-4 d-flex align-items-center justify-content-center text-decoration-none" title="Resume">R</a> </div>
+            <div class="mt-auto sidebar-icon" title="Theme Toggle">T</div>
+        </aside>
+
+        <main class="main-content flex-grow-1 overflow-auto">
+            <section id="hero" class="hero-section d-flex flex-column justify-content-end align-items-start position-relative">
+                <div class="spline-background">
+                    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/oVART0Yqsd1UTjot/scene.splinecode"></spline-viewer>  
+                    </div>
+
+                <div class="hero-text-content position-relative" style="z-index: 1; text-align: left;">
+                    <h1 class="display-3 fw-bold">Good afternoon, developer</h1>
+                    <p class="lead mt-3 mb-4">
+                        The name's [Your Name], but you can call me [Your Nickname/Handle]. I'm a [Your Role] and an
+                        Open-source enthusiast.
+                    </p>
+                    <a href="#profile-overview" class="btn btn-outline-light btn-lg">
+                        Profile Overview <span class="arrow">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="resume-callout position-absolute top-0 start-0 p-4 m-3">
+                    <div class="card bg-light-transparent"> <div class="card-body">
+                            <h5 class="card-title">Access online resume</h5>
+                            <p class="card-text small">Dynamic, interactive, and up-to-date</p>
+                            <a href="#resume" class="stretched-link text-decoration-none text-primary">&nbsp;</a> </div>
+                    </div>
+                </div>
+            </section>
+            
+
+            <section id="profile-overview" class="profile-overview-section py-5">
+                <div class="container">
+                    <div class="terminal-window mx-auto">
+                        <div class="terminal-header d-flex align-items-center">
+                            <div class="terminal-buttons d-flex">
+                                <span class="term-btn close" data-btn-type="close"></span>
+                                <span class="term-btn minimize" data-btn-type="minimize"></span>
+                                <span class="term-btn maximize" data-btn-type="maximize"></span>
+                            </div>
+                            <div class="terminal-title flex-grow-1 text-center">
+                                pwsh in bsodium
+                            </div>
+                            <div class="terminal-message-area" style ="/* initially hidden or styled */"></div>
+                        </div>
+
+                        <div class="terminal-body p-3 p-md-4">
+                            <p class="terminal-text" id="terminal-line-1">Powershell 7.3.4</p>
+                            <p class="terminal-text" id="terminal-line-2">Loading personal and system profiles took 86ms.</p>
+                            <p class="terminal-prompt" id="terminal-line-prompt">
+                                <span class="prompt-user">root@bsodium:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+                                <span class="prompt-command" id="terminal-command">bsodium.exe --education</span>
+                            </p>
+
+                            <div class="profile-tabs my-3">
+                                <button class="profile-tab-btn" data-content="experience">experience</button>
+                                <button class="profile-tab-btn active" data-content="education">education</button>
+                                </div>
+
+                            <div class="profile-content">
+                                <div class="content-pane active-pane" id="education-content">
+                                    <div class="content-item mb-3">
+                                        <h5 class="content-title">ENSEEIHT <span class="content-date">Sep 2020 - May 2023</span></h5>
+                                        <p class="content-subtitle">Master's degree in engineering - Computer Science and Applied Mathematics</p>
+                                    </div>
+                                    <div class="content-item mb-3">
+                                        <h5 class="content-title">AAU Klagenfurt <span class="content-date">Sep 2022 - Mar 2023</span></h5>
+                                        <p class="content-subtitle">Master's degree in computer science - Computer Graphics and Vision</p>
+                                    </div>
+                                    <div class="content-item">
+                                        <h5 class="content-title">CPGE Lycée Déodat de Séverac <span class="content-date">Sep 2018 - Jul 2020</span></h5>
+                                        <p class="content-subtitle">PTSI/PSI* (Bachelor equivalent) - Mathematics and Physics</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-pane" id="experience-content" style="display: none;">
+                                    <div class="content-item mb-3">
+                                        <h5 class="content-title">Awesome Company Inc. <span class="content-date">Jan 2024 - Present</span></h5>
+                                        <p class="content-subtitle">Lead Software Engineer - Doing amazing things!</p>
+                                    </div>
+                                    <div class="content-item">
+                                        <h5 class="content-title">Another Cool Place <span class="content-date">Jun 2023 - Dec 2023</span></h5>
+                                        <p class="content-subtitle">Junior Developer - Learned a lot here.</p>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="featured-projects" class="featured-projects-section py-5">
+                <div class="container">
+                    <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="fw-bold">Featured Projects</h2>
+                        <span class="text-muted small">9 repositories</span> </div>
+
+                    <div class="row gy-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="project-card card h-100"> <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">Slashboard Desktop</h5>
+                                    <span class="project-tech-tag mb-2">TypeScript</span>
+                                    <p class="card-text small flex-grow-1">
+                                        A simple and convenient dashboard to monitor the activity and performance of your home servers.
+                                    </p>
+                                    <div class="project-stats d-flex align-items-center text-muted small mb-3">
+                                        <span>⭐ 262</span>
+                                        <span class="ms-3">P 13</span> </div>
+                                    <div class="project-links mt-auto">
+                                        <a href="#" class="btn btn-sm project-btn me-2">Code</a>
+                                        <a href="#" class="btn btn-sm project-btn project-btn-website">Website</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="project-card card h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">Spectrum Visualizer Demo</h5>
+                                    <span class="project-tech-tag mb-2">TypeScript</span>
+                                    <p class="card-text small flex-grow-1">
+                                        A simple demo of a waveform generator for microphone recording UIs.
+                                    </p>
+                                    <div class="project-stats d-flex align-items-center text-muted small mb-3">
+                                        <span>⭐ 43</span>
+                                        <span class="ms-3">P 2</span>
+                                    </div>
+                                    <div class="project-links mt-auto">
+                                        <a href="#" class="btn btn-sm project-btn me-2">Code</a>
+                                        <a href="#" class="btn btn-sm project-btn project-btn-website">Website</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="project-card card h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">Bsodium.fr</h5>
+                                    <span class="project-tech-tag mb-2">TypeScript</span> <p class="card-text small flex-grow-1">
+                                        A highly over-engineered eportfolio built with React, React Spring and MUI joy.
+                                    </p>
+                                    <div class="project-stats d-flex align-items-center text-muted small mb-3">
+                                        <span>⭐ 19</span>
+                                        <span class="ms-3">P 2</span>
+                                    </div>
+                                    <div class="project-links mt-auto">
+                                        <a href="#" class="btn btn-sm project-btn me-2">Code</a>
+                                        <a href="#" class="btn btn-sm project-btn project-btn-website">Website</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                </div>
+            </section>
+            <section id="get-in-touch" class="get-in-touch-section py-5 text-center"> <div class="container">
+                    <h2 class="fw-bold mb-3">Get in touch</h2>
+                    <p class="lead mb-4 mx-auto" style="max-width: 600px;">
+                        Feel free to contact me if you have any questions or suggestions. I am always open to new ideas and opportunities.
+                    </p>
+
+                    <div class="contact-links-grid mb-5">
+                        <a href="YOUR_LINKEDIN_URL" target="_blank" class="contact-link-btn">
+                            LinkedIn
+                        </a>
+                        <a href="YOUR_GITHUB_URL" target="_blank" class="contact-link-btn">
+                            GitHub
+                        </a>
+                        <a href="YOUR_GITLAB_URL" target="_blank" class="contact-link-btn">
+                            GitLab
+                        </a>
+                        <a href="YOUR_DEVIANTART_URL" target="_blank" class="contact-link-btn">
+                            DeviantArt
+                        </a>
+                        <a href="YOUR_RESEARCHGATE_URL" target="_blank" class="contact-link-btn">
+                            ResearchGate
+                        </a>
+                        <a href="mailto:YOUR_EMAIL@example.com" class="contact-link-btn">
+                            Email
+                        </a>
+                        <a href="tel:YOUR_PHONE_NUMBER" class="contact-link-btn">
+                            Phone
+                        </a>
+                        </div>
+
+                    <div class="open-source-statement">
+                        <h3 class="fw-semibold fs-4 accent-text">Open-source. Join the bold side of the force.</h3>
+                        <p class="text-muted small mx-auto" style="max-width: 700px;">
+                            Collaboration and community-maintained projects form the bedrock upon which the digital world we live in is built. Any contribution, no matter how small, is and will always be appreciated.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
