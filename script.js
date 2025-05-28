@@ -1,3 +1,26 @@
+// --- THEME PERSISTENCE: Prevent theme flash on navigation ---
+// Set theme as early as possible on page load
+(function() {
+    try {
+        var themes = [
+            'theme-dark-teal',
+            'theme-dark-lavender',
+            'theme-dark-maroon',
+            'theme-dark-blue',
+            'theme-light-teal',
+            'theme-light-lavender',
+            'theme-light-maroon',
+            'theme-light-blue'
+        ];
+        var savedTheme = localStorage.getItem('portfolioTheme');
+        if (savedTheme && themes.includes(savedTheme)) {
+            document.documentElement.classList.add(savedTheme);
+        } else {
+            document.documentElement.classList.add(themes[0]);
+        }
+    } catch (e) {}
+})();
+
 // Wait for the entire HTML document to be fully loaded and parsed
 document.addEventListener('DOMContentLoaded', function () {
     // Inside your DOMContentLoaded listener in script.js or <script> tag in index.html
@@ -31,15 +54,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let messageTimeout; // To store the timeout ID
 
-    // --- Typewriter Effect for Terminal ---
+    // --- Typewriter Effect for Terminal and Hero ---
     const terminalLine1 = document.getElementById('terminal-line-1');
     const terminalLine2 = document.getElementById('terminal-line-2');
     const terminalCommand = document.getElementById('terminal-command');
-    // Keep the prompt structure but clear the command part for typing
     const fullPromptElement = document.getElementById('terminal-line-prompt');
     const promptStructure = `
         <span class="prompt-user">root@bsodium:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
         <span class="prompt-command" id="terminal-command"></span>`; // Command part will be typed
+
+    // HERO TYPEWRITER
+    const heroTitle = document.querySelector('.hero-text-content h1');
+    const heroSubtitle = document.querySelector('.hero-text-content p');
+    const heroTitleText = heroTitle ? heroTitle.textContent : '';
+    const heroSubtitleText = heroSubtitle ? heroSubtitle.textContent : '';
 
     const textLine1 = "Powershell 7.3.4";
     const textLine2 = "Loading personal and system profiles took 86ms.";
@@ -87,6 +115,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function startHeroTypewriter() {
+        if (heroTitle && heroSubtitle) {
+            heroTitle.classList.remove('invisible-until-typing');
+            heroSubtitle.classList.remove('invisible-until-typing');
+            // Animate in the profile overview button as soon as typing starts
+            const profileBtn = document.querySelector('.hero-text-content .btn-outline-light');
+            if (profileBtn) {
+                profileBtn.classList.add('profile-animate-in');
+            }
+            heroSubtitle.style.visibility = 'hidden';
+            heroSubtitle.style.position = 'absolute';
+            heroSubtitle.style.height = 'auto';
+            heroSubtitle.style.width = '100%';
+            heroSubtitle.style.left = '0';
+            heroSubtitle.style.top = 'auto';
+            heroSubtitle.style.marginTop = '0';
+            typeWriter(heroTitle, heroTitleText, () => {
+                heroSubtitle.style.position = '';
+                heroSubtitle.style.visibility = 'visible';
+                typeWriter(heroSubtitle, heroSubtitleText);
+            });
+        }
+    }
+
     // Only start the terminal animation if the #profile-overview section is present
     // (e.g., only on the homepage if this JS is global)
     if (document.getElementById('profile-overview')) {
@@ -97,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Small delay before starting to ensure page is settled
         setTimeout(startTerminalAnimation, 500);
+        setTimeout(startHeroTypewriter, 500);
     }
 
     // --- End Typewriter Effect ---
@@ -137,26 +190,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add a click event listener to each tab button
     tabButtons.forEach(button => {
         button.addEventListener('click', function () {
-            // Get the value of the 'data-content' attribute of the clicked button
-            // This tells us which content pane to show (e.g., "education" or "experience")
-            const targetContentId = this.dataset.content; // 'this' refers to the clicked button
+            const targetContentId = this.dataset.content;
 
             // 1. Update Tab Buttons: Make them all inactive first
             tabButtons.forEach(btn => {
                 btn.classList.remove('active');
             });
-            // Then, make the clicked button active
             this.classList.add('active');
 
             // 2. Update Content Panes: Hide all panes first
             contentPanes.forEach(pane => {
                 pane.classList.remove('active-pane');
             });
-            // Then, show the target content pane
-            // We construct the ID of the target pane (e.g., "education-content")
             const targetPane = document.getElementById(targetContentId + '-content');
             if (targetPane) {
                 targetPane.classList.add('active-pane');
+            }
+
+            // 3. Type out the correct command in the terminal prompt
+            if (targetContentId === 'experience' || targetContentId === 'education') {
+                if (fullPromptElement) {
+                    fullPromptElement.innerHTML = promptStructure;
+                    const newTerminalCommandElement = fullPromptElement.querySelector('#terminal-command');
+                    if (newTerminalCommandElement) {
+                        const command = targetContentId === 'experience' ? 'bsodium.exe --experience' : 'bsodium.exe --education';
+                        typeWriter(newTerminalCommandElement, command);
+                    }
+                }
             }
         });
     });
@@ -171,8 +231,9 @@ document.addEventListener('DOMContentLoaded', function () {
         'theme-dark-maroon',
         'theme-dark-blue',
         'theme-light-teal',
-        'theme-light-lavender'
-        // Add 'theme-light-maroon', 'theme-light-blue' once defined in CSS
+        'theme-light-lavender',
+        'theme-light-maroon',
+        'theme-light-blue'
     ];
     let currentThemeIndex = 0; // Will be updated by loadTheme
 
@@ -214,4 +275,40 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load the theme when the page loads
     loadTheme();
     // --- Advanced Theme Toggler (NEW CODE ENDS HERE) ---
+
+    // --- PROJECT SEARCH FUNCTIONALITY ---
+    const searchInput = document.querySelector('.search-projects input');
+    const projectCards = document.querySelectorAll('.project-list-item.card');
+
+    if (searchInput && projectCards.length > 0) {
+        searchInput.addEventListener('input', function () {
+            const query = this.value.trim().toLowerCase();
+            projectCards.forEach(card => {
+                // Search in title and description
+                const title = card.querySelector('.card-title')?.textContent?.toLowerCase() || '';
+                const desc = card.querySelector('.card-text')?.textContent?.toLowerCase() || '';
+                if (title.includes(query) || desc.includes(query)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+    // --- PROJECT RANDOMIZE FUNCTIONALITY ---
+    const randomizeBtn = document.querySelector('.btn-secondary');
+    if (randomizeBtn && projectCards.length > 0) {
+        randomizeBtn.addEventListener('click', function () {
+            // Remove any previous highlight
+            projectCards.forEach(card => card.classList.remove('random-highlight'));
+            // Pick a random card
+            const visibleCards = Array.from(projectCards).filter(card => card.style.display !== 'none');
+            if (visibleCards.length === 0) return;
+            const randomIdx = Math.floor(Math.random() * visibleCards.length);
+            const randomCard = visibleCards[randomIdx];
+            randomCard.classList.add('random-highlight');
+            // Scroll to the card smoothly
+            randomCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    }
 });

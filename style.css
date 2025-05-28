@@ -192,18 +192,78 @@ html.theme-light-lavender {
     --typing-cursor-color: var(--accent-color);
 }
 
-/* Add .theme-light-maroon, .theme-light-blue similarly, defining all base and accent vars */
-
-body {
-    font-family: 'Inter', sans-serif; /* Default font */
-    background-color: var(--base-bg-section); /* Dark background similar to screenshots */
-    color: var(--text-primary); /* Light text color */
-    margin: 0; /* Remove default browser margin */
-    overflow: hidden; /* Prevents scrollbars on the body itself, main content will scroll */
+html.theme-light-maroon {
+    --base-bg: #f0f2f5;
+    --base-bg-lighter: #ffffff;
+    --base-bg-section: #ffffff;
+    --base-bg-tertiary: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted-more: #6c757d;
+    --text-inverted: #ffffff;
+    --border-color: #dee2e6;
+    --border-color-light: #ced4da;
+    --sidebar-bg: #e9ecef;
+    --sidebar-icon-bg: #dadfe4;
+    --sidebar-icon-text: #343a40;
+    --terminal-bg: #f8f9fa;
+    --terminal-header-bg: #e9ecef;
+    --card-bg: #ffffff;
+    --button-bg: #ced4da;
+    --button-text: #212529;
+    --button-hover-bg: #adb5bd;
+    --button-hover-text: #000000;
+    --input-bg: #ffffff;
+    --input-placeholder-text: #6c757d;
+    --resume-callout-bg: rgba(220, 223, 228, 0.8);
+    --accent-color: #c7365d;
+    --accent-color-darker: #a52a2a;
+    --accent-text-on-accent-bg: #ffffff;
+    --accent-bg-transparent-low: rgba(199, 54, 93, 0.1);
+    --accent-bg-transparent-med: rgba(199, 54, 93, 0.15);
+    --accent-bg-transparent-hover: rgba(199, 54, 93, 0.2);
+    --accent-border-transparent: rgba(199, 54, 93, 0.2);
+    --accent-border-transparent-hover: rgba(199, 54, 93, 0.4);
+    --sidebar-icon-hover-bg: var(--accent-color);
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif; /* Font for headings */
+html.theme-light-blue {
+    --base-bg: #f0f2f5;
+    --base-bg-lighter: #ffffff;
+    --base-bg-section: #ffffff;
+    --base-bg-tertiary: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted-more: #6c757d;
+    --text-inverted: #0d1117;
+    --border-color: #dee2e6;
+    --border-color-light: #ced4da;
+    --sidebar-bg: #e9ecef;
+    --sidebar-icon-bg: #dadfe4;
+    --sidebar-icon-text: #343a40;
+    --terminal-bg: #f8f9fa;
+    --terminal-header-bg: #e9ecef;
+    --card-bg: #ffffff;
+    --button-bg: #ced4da;
+    --button-text: #212529;
+    --button-hover-bg: #adb5bd;
+    --button-hover-text: #000000;
+    --input-bg: #ffffff;
+    --input-placeholder-text: #6c757d;
+    --resume-callout-bg: rgba(220, 223, 228, 0.8);
+    --accent-color: #56ccf2;
+    --accent-color-darker: #2f80ed;
+    --accent-text-on-accent-bg: #0d1117;
+    --accent-bg-transparent-low: rgba(86, 204, 242, 0.1);
+    --accent-bg-transparent-med: rgba(86, 204, 242, 0.15);
+    --accent-bg-transparent-hover: rgba(86, 204, 242, 0.2);
+    --accent-border-transparent: rgba(86, 204, 242, 0.2);
+    --accent-border-transparent-hover: rgba(86, 204, 242, 0.4);
+    --sidebar-icon-hover-bg: var(--accent-color);
+    --sidebar-icon-hover-text: var(--accent-text-on-accent-bg);
+    --typing-cursor-color: var(--accent-color);
 }
 
 /* ===== PROFILE OVERVIEW SECTION STYLING ===== */
@@ -253,8 +313,8 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 100%; /* Position below the header */
     left: 10px; /* Adjust as needed */
-    background-color: #2c333c; /* Darker than buttons, lighter than terminal */
-    color: var(--text-primary);
+    background-color: var(--base-bg-lighter); /* Use theme variable for background */
+    color: var(--text-primary); /* Use theme variable for text */
     padding: 8px 12px;
     border-radius: 4px;
     font-size: 1rem;
@@ -366,10 +426,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 10px;
 }
 
-.content-item .content-subtitle {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
+.content-item .content-subtitle,
+.project-card .card-text {
+    color: var(--text-secondary); /* Use theme variable for subheading text */
+    transition: color 0.3s;
 }
 
 /* ===== FEATURED PROJECTS SECTION STYLING ===== */
@@ -379,24 +439,45 @@ h1, h2, h3, h4, h5, h6 {
 
 .featured-projects-section .section-header h2 {
     color: var(--text-primary); /* Light color for the section title */
+    font-weight: 700;
 }
-
-.featured-projects-section .section-header .small {
-    color: #8b949e; /* Dimmer color for "9 repositories" */
+.featured-projects-section .section-header h2 .mismatch {
+    color: var(--accent-color);
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
 .project-card {
-    background-color: var(--base-bg); /* Dark background for cards, similar to terminal */
-    border: 1px solid var(--border-color); /* Subtle border for cards */
-    border-radius: 8px; /* Rounded corners for cards */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    background-color: var(--base-bg);
+    border: 1.5px solid var(--border-color);
+    border-radius: 18px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10), 0 1.5px 0 0 var(--accent-bg-transparent-low);
+    transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s, background 0.3s;
+    position: relative;
+}
+.project-card:hover, .project-card.active {
+    background: var(--accent-bg-transparent-med);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 32px 0 var(--accent-bg-transparent-hover), 0 2px 0 0 var(--accent-color);
+    transform: translateY(-8px) scale(1.03);
+    z-index: 2;
 }
 
-.project-card:hover {
-    transform: translateY(-5px); /* Slight lift effect on hover */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+/* Highlighted project card for randomize effect */
+.project-list-item.random-highlight {
+    box-shadow: 0 8px 32px 0 var(--accent-bg-transparent-hover), 0 2px 0 0 var(--accent-color);
+    border-color: var(--accent-color);
+    background: var(--accent-bg-transparent-med);
+    transform: translateY(-8px) scale(1.03);
+    z-index: 2;
+    transition: box-shadow 0.3s, border-color 0.3s, background 0.3s, transform 0.3s;
+}
+
+/* Mismatched accent for project card titles and hero title */
+.project-card .card-title .mismatch {
+    color: var(--accent-color) !important;
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
 .project-card .card-body {
@@ -412,7 +493,7 @@ h1, h2, h3, h4, h5, h6 {
 .project-tech-tag {
     display: inline-block; /* Allow padding and background */
     background-color: var(--accent-bg-transparent-low); /* Accent color with low opacity */
-    color: var(--accent-color); /* Accent color */
+    color: var(--text-primary); /* Accent color */
     font-size: 0.75rem;
     font-weight: 500;
     padding: 0.25em 0.6em;
@@ -424,13 +505,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-secondary); /* Softer color for description */
     font-size: 0.875rem; /* Standard small text size */
     line-height: 1.5;
-}
-
-.project-stats span {
-    font-size: 0.8rem;
-}
-.project-stats span:first-child {
-    color: var(--text-primary); /* Brighter color for star count, for example */
 }
 
 .project-links .project-btn {
@@ -489,6 +563,83 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--sidebar-icon-hover-text);
 }
 
+/* ===== BUTTONS: THEME-AWARE ===== */
+.btn,
+.btn-outline-light,
+.project-btn,
+.project-btn-website,
+.contact-link-btn,
+.project-links .btn,
+.project-links .project-btn,
+.project-links .project-btn-website {
+    background-color: var(--button-bg) !important;
+    color: var(--button-text) !important;
+    border-color: var(--button-border) !important;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn:hover,
+.btn-outline-light:hover,
+.project-btn:hover,
+.project-btn-website:hover,
+.contact-link-btn:hover,
+.project_links .btn:hover,
+.project-links .project-btn:hover,
+.project-links .project-btn-website:hover {
+    background-color: var(--button-hover-bg) !important;
+    color: var(--button-hover-text) !important;
+    border-color: var(--button-hover-bg) !important;
+}
+
+.btn-outline-light {
+    background: transparent !important;
+    color: var(--button-outline-accent-text) !important;
+    border-color: var(--button-outline-accent-border) !important;
+}
+.btn-outline-light:hover {
+    background: var(--button-outline-accent-hover-bg) !important;
+    color: var(--button-outline-accent-hover-text) !important;
+}
+
+/* ===== PROJECTS/EXPERIENCE SUBHEADINGS & META ===== */
+.project-card .card-text,
+.content-item .content-subtitle,
+.featured-projects-section .section-header .small,
+.content-item .content-date,
+.project-list-item .card-text,
+.experience-item .company-name,
+.experience-item .item-date,
+.experience-item .item-location,
+.education-item .item-date,
+.education-item .item-degree {
+    color: var(--text-secondary) !important;
+    transition: color 0.3s;
+}
+
+/* ===== SIDEBAR HOVER LABELS ===== */
+.sidebar-icon {
+    position: relative;
+}
+.sidebar-label {
+    display: none;
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--base-bg-lighter);
+    color: var(--text-primary);
+    padding: 4px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 100;
+    pointer-events: none;
+}
+.sidebar-icon:hover .sidebar-label {
+    display: block;
+}
+
 /* ===== MAIN CONTENT STYLING ===== */
 .main-content {
     padding-left: 80px; /* Offset by sidebar width */
@@ -521,7 +672,6 @@ h1, h2, h3, h4, h5, h6 {
 .hero-text-content {
     align-items: flex-start;
     text-align: left;
-    margin-bottom: 40px;
     max-width: 700px; /* Limit width of text for readability */
 }
 
@@ -540,6 +690,17 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px 25px;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Animate the profile overview button zooming up from the bottom on page load */
+.hero-text-content .btn-outline-light {
+    opacity: 0;
+    transform: translateY(80px) scale(0.95);
+    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.hero-text-content .btn-outline-light.profile-animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .hero-text-content .btn-outline-light:hover {
@@ -640,6 +801,23 @@ h1, h2, h3, h4, h5, h6 {
 .open-source-statement .text-muted {
     color: var(--text-muted-more) !important;
     line-height: 1.7;
+}
+
+/* ===== PORTFOLIO PAGE STYLING ===== */
+body, .main-content, .profile-overview-section, .featured-projects-section, .all-projects-section, .resume-section, .get-in-touch-section {
+    background-color: var(--base-bg-section) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.project-card .card-text,
+.content-item .content-subtitle,
+.featured-projects-section .section-header .small,
+.content-item .content-date,
+.project-list-item .card-text,
+.experience-item .company-name {
+    color: var(--text-secondary) !important;
+    transition: color 0.3s;
 }
 
 /* ===== ALL PROJECTS PAGE STYLING ===== */
@@ -810,4 +988,18 @@ h1, h2, h3, h4, h5, h6 {
 .item-details-list li {
     margin-bottom: 0.3rem;
     line-height: 1.6;
+}
+
+/* Utility: Hide until typing starts */
+.invisible-until-typing {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* When JS removes this class, element fades in */
+.visible-typing {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s, visibility 0.3s;
 }
