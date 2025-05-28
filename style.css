@@ -581,6 +581,9 @@ html.theme-light-blue {
   .main-content {
     padding-left: 48px !important;
   }
+  .hero-section {
+    padding-bottom: 80px !important;
+  }
 }
 
 /* ===== BUTTONS: THEME-AWARE ===== */
