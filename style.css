@@ -563,6 +563,23 @@ html.theme-light-blue {
     color: var(--sidebar-icon-hover-text);
 }
 
+/* Sidebar responsive size for mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 0.5rem 0.25rem !important;
+    min-width: 48px !important;
+    width: 48px !important;
+    max-width: 48px !important;
+  }
+  .sidebar-icon {
+    font-size: 1.1rem !important;
+    padding: 0.25rem 0 !important;
+  }
+  .sidebar-label {
+    display: none !important;
+  }
+}
+
 /* ===== BUTTONS: THEME-AWARE ===== */
 .btn,
 .btn-outline-light,
