@@ -66,11 +66,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // HERO TYPEWRITER
     const heroTitle = document.querySelector('.hero-text-content h1');
     const heroSubtitle = document.querySelector('.hero-text-content p');
+    
+    // Dynamic greeting based on time
+    function getGreeting() {
+        const now = new Date();
+        const hour = now.getHours();
+        if (hour >= 5 && hour < 12) return 'morning'; // sunrise to noon
+        if (hour >= 12 && hour < 18) return 'afternoon'; // noon to sunset
+        return 'evening'; // sunset to sunrise
+    }
+    // Replace greeting in hero title
+    if (heroTitle) {
+        heroTitle.innerHTML = heroTitle.innerHTML.replace(/good (morning|afternoon|evening)/i, 'good ' + getGreeting());
+    }
     const heroTitleText = heroTitle ? heroTitle.textContent : '';
     const heroSubtitleText = heroSubtitle ? heroSubtitle.textContent : '';
 
     const textLine1 = "Powershell 7.3.4";
-    const textLine2 = "Loading personal and system profiles took 86ms.";
+    const randomMs = Math.floor(Math.random() * 100) + 1;
+    const textLine2 = `Loading personal and system profiles took ${randomMs}ms.`;
     const commandText = "bsodium.exe --education";
 
     let typingSpeed = 50; // Milliseconds per character
