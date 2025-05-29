@@ -412,6 +412,22 @@ html.theme-light-blue {
     to { opacity: 1; transform: translateY(0); }
 }
 
+.content-item {
+    background: transparent;
+    border-radius: 14px;
+    transition: box-shadow 0.3s, border-color 0.3s, background 0.3s, transform 0.3s;
+    border: 1.5px solid transparent;
+    position: relative;
+    padding: 0.7rem;
+}
+.content-item:hover, .content-item:focus {
+    background: var(--accent-bg-transparent-med);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 32px 0 var(--accent-bg-transparent-hover), 0 2px 0 0 var(--accent-color);
+    transform: translateY(-6px) scale(1.025);
+    z-index: 2;
+}
+
 .content-item h5.content-title {
     color: var(--text-primary); /* Brighter color for titles */
     font-size: 1.05rem;
@@ -556,6 +572,16 @@ html.theme-light-blue {
     cursor: pointer;
     transition: background-color 0.3s ease;
     color: var(--sidebar-icon-text); /* Icon color */
+}
+
+/* Sidebar icon SVGs use currentColor for fill/stroke so they adapt to theme */
+.sidebar-icon svg {
+  width: 1.5em;
+  height: 1.5em;
+  display: block;
+  fill: currentColor;
+  stroke: currentColor;
+  transition: color 0.3s;
 }
 
 .sidebar-icon:hover {

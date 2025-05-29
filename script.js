@@ -1,26 +1,3 @@
-// --- THEME PERSISTENCE: Prevent theme flash on navigation ---
-// Set theme as early as possible on page load
-(function() {
-    try {
-        var themes = [
-            'theme-dark-teal',
-            'theme-dark-lavender',
-            'theme-dark-maroon',
-            'theme-dark-blue',
-            'theme-light-teal',
-            'theme-light-lavender',
-            'theme-light-maroon',
-            'theme-light-blue'
-        ];
-        var savedTheme = localStorage.getItem('portfolioTheme');
-        if (savedTheme && themes.includes(savedTheme)) {
-            document.documentElement.classList.add(savedTheme);
-        } else {
-            document.documentElement.classList.add(themes[0]);
-        }
-    } catch (e) {}
-})();
-
 // Wait for the entire HTML document to be fully loaded and parsed
 document.addEventListener('DOMContentLoaded', function () {
     // Inside your DOMContentLoaded listener in script.js or <script> tag in index.html
