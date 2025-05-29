@@ -1102,3 +1102,29 @@ body, .main-content, .profile-overview-section, .featured-projects-section, .all
     visibility: visible;
     transition: opacity 0.3s, visibility 0.3s;
 }
+
+.resume-section a,
+.resume-section a:visited,
+.resume-section a.text-decoration-none {
+  color: var(--accent-color);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.resume-section a:hover,
+.resume-section a:focus {
+  color: var(--accent-color-darker);
+  text-decoration: underline;
+}
+
+/* Terminal link highlights (homepage terminal) */
+.terminal-body a,
+.terminal-body a:visited {
+  color: var(--accent-color);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.terminal-body a:hover,
+.terminal-body a:focus {
+  color: var(--accent-color-darker);
+  text-decoration: underline;
+}
