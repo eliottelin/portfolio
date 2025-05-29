@@ -985,8 +985,8 @@ body, .main-content, .profile-overview-section, .featured-projects-section, .all
 .project-list-item:hover,
 .project-list-item:focus-within {
   transform: translateY(-8px) scale(1.025);
-  box-shadow: 0 8px 32px 0 var(--accent-glow,rgba(0,255,255,0.18));
-  border-color: var(--accent-color, #00bcd4);
+  box-shadow: 0 8px 32px 0 var(--accent-bg-transparent-hover);
+  border-color: var(--accent-color);
   z-index: 2;
 }
 
