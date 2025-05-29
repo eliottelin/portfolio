@@ -75,19 +75,19 @@
     <main class="main-content flex-grow-1 overflow-auto">
 
             <section id="all-projects" class="all-projects-section py-5 px-3 px-md-4">
-                <div class="container-fluid"> <div class="projects-page-header mb-5">
+                <div class="container-fluid"> <div class="projects-page-header">
                         <a href="index.html" class="btn btn-outline-secondary btn-sm mb-3">
                             &larr; Back to homepage
                         </a>
-                        <h1 class="display-4 fw-bold page-title">Projects & Experiments</h1>
+                        <h1 class="display-4 fw-bold page-title"><span class="mismatch">Projects</span> & Competitions</h1>
                         </div>
 
                     <div class="filters-bar d-flex flex-wrap justify-content-between align-items-center mb-4 p-3 bg-dark-tertiary rounded-2">
                         <div class="search-projects me-3 mb-2 mb-md-0 flex-grow-1" style="max-width: 300px;">
-                            <input type="text" class="form-control form-control-sm" placeholder="Search 24 projects...">
+                            <input type="text" class="form-control form-control-sm" id="search-projects-input" placeholder="Search projects...">
                         </div>
                         <div class="action-buttons">
-                            <button class="btn btn-sm btn-secondary">Randomize</button>
+                            <button class="btn btn-sm btn-secondary">I'm Feeling Lucky</button>
                         </div>
                     </div>
 
@@ -96,14 +96,15 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h5 class="card-title fw-bold">Slashboard desktop code repository</h5>
+                                        <h5 class="card-title fw-bold">HYTH Website</h5>
                                         <p class="card-text small text-muted">
-                                            TypeScript project published to GitHub 4 years ago, updated 10 days ago
+                                            A website for HYTH Architects and Planners, showcasing their projects, services, team, and job openings.
+                                            Built using Tailwind CSS, projects database managed with Contentful CMS.
+                                            <br>Can be updated by the client using Contentful CMS.
                                         </p>
                                     </div>
                                     <div class="project-item-actions ms-3">
-                                        <a href="#" class="btn btn-sm btn-outline-info me-2">Explore source</a>
-                                        <a href="#" class="btn btn-sm btn-info">Run demo</a>
+                                        <a href="https://www.hyth.com.tw/" class="btn btn-sm btn-info">Website</a>
                                     </div>
                                 </div>
                             </div>
@@ -113,14 +114,14 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h5 class="card-title fw-bold">Spectrum visualizer demo code repository</h5>
+                                        <h5 class="card-title fw-bold">SimplyLearn</h5>
                                         <p class="card-text small text-muted">
-                                            TypeScript project published to GitHub 8 months ago, updated 2 months ago
+                                            2nd place winner of the 2025 TACS Build 4 Good hackathon (Team Project).
+                                            AI generated to-do list automatically exported to Notion database using Gemini and Notion APIs.
                                         </p>
                                     </div>
                                     <div class="project-item-actions ms-3">
-                                        <a href="#" class="btn btn-sm btn-outline-info me-2">Explore source</a>
-                                        <a href="#" class="btn btn-sm btn-info">Run demo</a>
+                                        <a href="https://github.com/SaptiSD/TACS_Build_4_Good" class="btn btn-sm btn-outline-info me-2">Code</a>
                                     </div>
                                 </div>
                             </div>
@@ -130,23 +131,59 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
-                                        <h5 class="card-title fw-bold">bsodium.fr code repository</h5>
+                                        <h5 class="card-title fw-bold">This Website</h5>
                                         <p class="card-text small text-muted">
-                                            TypeScript project published to GitHub X months ago, updated Y months ago
+                                            My first eportfolio website, built using Spline 3D for the background and Bootstrap CSS for the layout.
                                         </p>
                                     </div>
                                     <div class="project-item-actions ms-3">
-                                        <a href="#" class="btn btn-sm btn-outline-info me-2">Explore source</a>
-                                        <a href="#" class="btn btn-sm btn-info">Run demo</a>
+                                        <a href="https://eliottelin.vercel.app/" class="btn btn-sm btn-info">Website</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="project-list-item card mb-3 bg-dark-secondary">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="card-title fw-bold">Finance Team Lead - Team Voltaris</h5>
+                                        <p class="card-text small text-muted">
+                                            Competed in the Solar District Cup: collegiate competition in designing & modeling distributed solar energy systems, sponsored by the US Department of Energy.
+                                            <br>Oversaw financial modeling and collaboration with other teams (Engineering and Urban Planning).
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="project-list-item card mb-3 bg-dark-secondary">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="card-title fw-bold">Team Lead - Automatic Chair</h5>
+                                        <p class="card-text small text-muted">
+                                            Led a team to design and build an office chair with electric lift for a teen with Limb Girdle Muscular Dystrophy.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
     <script src="script.js"></script>
+    <script>
+      // Dynamically set the placeholder to match the number of projects
+      document.addEventListener('DOMContentLoaded', function() {
+        var projects = document.querySelectorAll('.project-list-item');
+        var input = document.getElementById('search-projects-input');
+        if (input && projects) {
+          input.placeholder = `Search ${projects.length} projects...`;
+        }
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

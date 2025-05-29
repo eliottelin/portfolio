@@ -899,6 +899,12 @@ body, .main-content, .profile-overview-section, .featured-projects-section, .all
     color: var(--text-primary);
 }
 
+.projects-page-header .page-title .mismatch {
+    color: var(--accent-color);
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
 .filters-bar {
     background-color: var(--base-bg); /* A very dark tertiary background */
     border: 1px solid var(--border-color);
@@ -968,6 +974,35 @@ body, .main-content, .profile-overview-section, .featured-projects-section, .all
     border-color: #2f80ed;
     color: #ffffff;
 }
+
+/* ===== PROJECT CARD STYLING ===== */
+/* Project card rise and glow effect on hover */
+.project-list-item {
+  transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s cubic-bezier(.4,2,.6,1), border-color 0.25s;
+  box-shadow: 0 2px 8px 0 var(--shadow-color,rgba(0,0,0,0.08));
+  border: 1.5px solid transparent;
+}
+.project-list-item:hover,
+.project-list-item:focus-within {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 8px 32px 0 var(--accent-glow,rgba(0,255,255,0.18));
+  border-color: var(--accent-color, #00bcd4);
+  z-index: 2;
+}
+
+/* Mismatched accent effect for project titles */
+.project-list-item .card-title {
+  display: inline-block;
+  background: linear-gradient(90deg,
+    var(--accent-color, #00bcd4) 0%,
+    var(--accent-mismatch, #a259ff) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 0.3s;
+}
+
 /* ===== RESUME PAGE STYLING ===== */
 .resume-section {
     background-color: var(--base-bg-section); /* Consistent dark background */
