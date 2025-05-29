@@ -27,7 +27,7 @@
     --resume-callout-bg: rgba(44, 47, 54, 0.8); /* bg-light-transparent */
     --resume-callout-border: rgba(102, 252, 241, 0.3); /* Accent transparent border */
 
-    --button-bg: #313a49;
+    --button-bg: #313a4900;
     --button-text: #c5c6c7;
     --button-hover-bg: #404a58;
     --button-hover-text: var(--text-primary);
@@ -130,7 +130,7 @@ html.theme-light-base { /* A generic light theme base, accents will be applied o
     --terminal-bg: #f8f9fa;
     --terminal-header-bg: #e9ecef;
     --card-bg: #ffffff;
-    --button-bg: #ced4da;
+    --button-bg: #ced4da00;
     --button-text: #212529;
     --button-hover-bg: #adb5bd;
     --button-hover-text: #000000;
@@ -150,7 +150,7 @@ html.theme-light-teal {
     --border-color: #dee2e6; --border-color-light: #ced4da;
     --sidebar-bg: #e9ecef; --sidebar-icon-bg: #dadfe4; --sidebar-icon-text: #343a40;
     --terminal-bg: #f8f9fa; --terminal-header-bg: #e9ecef; --card-bg: #ffffff;
-    --button-bg: #ced4da; --button-text: #212529; --button-hover-bg: #adb5bd; --button-hover-text: #000000;
+    --button-bg: #ced4da00; --button-text: #212529; --button-hover-bg: #adb5bd; --button-hover-text: #000000;
     --input-bg: #ffffff; --input-placeholder-text: #6c757d;
     --resume-callout-bg: rgba(220, 223, 228, 0.8);
 
@@ -174,7 +174,7 @@ html.theme-light-lavender {
     --border-color: #dee2e6; --border-color-light: #ced4da;
     --sidebar-bg: #e9ecef; --sidebar-icon-bg: #dadfe4; --sidebar-icon-text: #343a40;
     --terminal-bg: #f8f9fa; --terminal-header-bg: #e9ecef; --card-bg: #ffffff;
-    --button-bg: #ced4da; --button-text: #212529; --button-hover-bg: #adb5bd; --button-hover-text: #000000;
+    --button-bg: #ced4da00; --button-text: #212529; --button-hover-bg: #adb5bd; --button-hover-text: #000000;
     --input-bg: #ffffff; --input-placeholder-text: #6c757d;
     --resume-callout-bg: rgba(220, 223, 228, 0.8);
 
@@ -209,7 +209,7 @@ html.theme-light-maroon {
     --terminal-bg: #f8f9fa;
     --terminal-header-bg: #e9ecef;
     --card-bg: #ffffff;
-    --button-bg: #ced4da;
+    --button-bg: #ced4da00;
     --button-text: #212529;
     --button-hover-bg: #adb5bd;
     --button-hover-text: #000000;
@@ -246,7 +246,7 @@ html.theme-light-blue {
     --terminal-bg: #f8f9fa;
     --terminal-header-bg: #e9ecef;
     --card-bg: #ffffff;
-    --button-bg: #ced4da;
+    --button-bg: #ced4da00;
     --button-text: #212529;
     --button-hover-bg: #adb5bd;
     --button-hover-text: #000000;
@@ -634,9 +634,9 @@ html.theme-light-blue {
 .project_links .btn:hover,
 .project-links .project-btn:hover,
 .project-links .project-btn-website:hover {
-    background-color: var(--button-hover-bg) !important;
-    color: var(--button-hover-text) !important;
-    border-color: var(--button-hover-bg) !important;
+    background-color: var(--accent-bg-transparent-low) !important;
+    color: var(--button-outline-accent-hover-text) !important;
+    border-color: var(--accent-color) !important;
 }
 
 .btn-outline-light {
@@ -645,8 +645,9 @@ html.theme-light-blue {
     border-color: var(--button-outline-accent-border) !important;
 }
 .btn-outline-light:hover {
-    background: var(--button-outline-accent-hover-bg) !important;
+    background: var(--accent-bg-transparent-low) !important;
     color: var(--button-outline-accent-hover-text) !important;
+    border-color: var(--accent-color) !important;
 }
 
 /* ===== PROJECTS/EXPERIENCE SUBHEADINGS & META ===== */
@@ -770,6 +771,8 @@ html.theme-dark-blue .spline-background {
 .hero-text-content .btn-outline-light:hover {
     background-color: var(--button-outline-accent-hover-bg);
     color: var(--button-outline-accent-hover-text);
+    border-color: var(--accent-color);
+    transform: translateY(-3px); /* Slight lift on hover, matches contact-link-btn */
 }
 
 .hero-text-content .arrow {
